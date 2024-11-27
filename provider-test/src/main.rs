@@ -6,7 +6,8 @@ use starknet::providers::Provider;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>>{
     println!("Hello, world!");
-    let url = Url::parse("http://localhost:5050").unwrap();
+    //let url = Url::parse("http://localhost:5050").unwrap();
+    let url = Url::parse("0.0.0.0:5050").unwrap();
     let provider = Arc::new(JsonRpcClient::new(HttpTransport::new(url)));
     println!("{:?}", provider);
     let x = provider.block_hash_and_number().await?;
