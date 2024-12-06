@@ -11,5 +11,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>{
     println!("{:?}", provider);
     let x = provider.block_hash_and_number().await?;
     println!("{:?}", x);
+    let number = x.block_number;
+    println!("{:?}", number);
     Ok(())
 }
