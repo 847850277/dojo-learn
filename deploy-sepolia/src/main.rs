@@ -62,7 +62,7 @@ pub(crate) async fn test_3(path: &str) -> FieldElement {
     let casm_contract = Cairo271CasmClass::from_contract_class(
         contract_class,
         false,
-        //MAX_BYTECODE_SIZE_1,
+        MAX_BYTECODE_SIZE_1,
     ).unwrap();
 
     let casm_class_json = serde_json::to_string(&casm_contract).unwrap();
