@@ -23,6 +23,8 @@ sozo migrate --profile release
 
 注册命名空间
 
+注册模型
+
 
 
 

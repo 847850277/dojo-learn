@@ -148,3 +148,61 @@ pub(crate) async fn register_namespace() {
     println!("Transaction hash: {:#064x}", result.transaction_hash);
 
 }
+
+// 注册事件
+// 命名空间和 event_合约的class_hash
+pub(crate) async fn register_event() {
+    todo!()
+}
+
+
+// 注册model
+// 命名空间 和 model_合约的class_hash
+pub(crate) async fn register_model_position() {
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+
+
+    // a
+    let name_space_data = byte_array().await;
+
+    // model class_hash
+    let class_hash = felt!("0x02283c68ecba5c60bbbbd3b00659808a02244468e41a1d2cdba1312d65b83594");
+
+    // name_space_data add class
+    let mut calldata = name_space_data;
+    calldata.push(class_hash);
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: get_selector_from_name("register_model").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
