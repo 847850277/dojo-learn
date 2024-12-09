@@ -7,7 +7,7 @@ use cairo_starknet_2_7_1::{
     contract_class::ContractClass as Cairo271Class,
 };
 
-pub(crate) async fn class_hash(path: &str) -> Felt {
+pub(crate) async fn casm_class_hash(path: &str) -> Felt {
     let class: starknet::core::types::contract::SierraClass =
         serde_json::from_reader(std::fs::File::open(path).unwrap()).unwrap();
     let sierra_class_json = serde_json::to_string(&class).unwrap();

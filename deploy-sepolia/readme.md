@@ -26,12 +26,10 @@ sozo migrate --profile release
 注册模型，调用注册模型方法，在model合约内部会自动部署该模型合约
 
 
-
-
 支线任务
 
 cairo的ByteArray数据类型用法  https://github.com/cartridge-gg/cainome/blob/main/crates/cairo-serde/src/types/byte_array.rs#L130
 和 byte_array.rs
 
 
-
+在Rust中怎么获取链上的class_hash

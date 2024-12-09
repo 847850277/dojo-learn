@@ -1,4 +1,4 @@
-use crate::startknet_contract::class_hash;
+use crate::startknet_contract::casm_class_hash;
 use starknet::accounts::{Account, ExecutionEncoding, SingleOwnerAccount};
 use starknet::contract::ContractFactory;
 use starknet::core::chain_id;
@@ -16,7 +16,7 @@ use crate::byte_array::{byte_array, byte_array_str};
 pub async fn decare() {
     let path = "/Users/zhengpeng/Source/Code/Rust-Code/Github/dojo-learn/dojo-starter/target/release/dojo_starter_world.contract_class.json";
 
-    let casm_class_hash = class_hash(path).await;
+    let casm_class_hash = casm_class_hash(path).await;
 
     let class: SierraClass = serde_json::from_reader(std::fs::File::open(path).unwrap()).unwrap();
 
@@ -279,6 +279,107 @@ pub(crate) async fn register_model_position_b() {
     // model class_hash
     let class_hash = felt!("0x02283c68ecba5c60bbbbd3b00659808a02244468e41a1d2cdba1312d65b83594");
 
+    // name_space_data add class
+    let mut calldata = name_space_data;
+    calldata.push(class_hash);
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: get_selector_from_name("register_model").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
+
+pub(crate) async fn register_model_move() {
+
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+
+
+    // b namespace
+    let name_space_data = byte_array_str("b").await;
+
+    // model class_hash,从model的decalre中获取
+    let class_hash = Felt::from_hex("0x070edf8f3be0b118e78f856f3ea9ebb652cba3684abaf7f299bfa6f93bf907c9").unwrap();
+    // print class_hash hex_to_string
+    println!("class_hash: {}", class_hash.to_hex_string());
+    // name_space_data add class
+    let mut calldata = name_space_data;
+    calldata.push(class_hash);
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: get_selector_from_name("register_model").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
+
+pub(crate) async fn register_model_direction() {
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+
+
+    // b namespace
+    let name_space_data = byte_array_str("b").await;
+
+    // model class_hash,从model的decalre中获取
+    let class_hash = Felt::from_hex("0x07deb48ccf95cc441a0489cfefdae54aeb6f8ec462ba13ff25e23f080e66cc2f").unwrap();
+    // print class_hash hex_to_string
+    println!("class_hash: {}", class_hash.to_hex_string());
     // name_space_data add class
     let mut calldata = name_space_data;
     calldata.push(class_hash);
