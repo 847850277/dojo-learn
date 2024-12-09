@@ -29,6 +29,7 @@ sozo migrate --profile release
 支线任务
 
 cairo的ByteArray数据类型用法  https://github.com/cartridge-gg/cainome/blob/main/crates/cairo-serde/src/types/byte_array.rs#L130
+和 byte_array.rs
 
 
 

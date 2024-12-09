@@ -11,6 +11,7 @@ use starknet::signers::{LocalWallet, SigningKey};
 use std::sync::Arc;
 use starknet::core::utils::get_selector_from_name;
 use url::Url;
+use crate::byte_array::byte_array;
 
 pub async fn decare() {
     let path = "/Users/zhengpeng/Source/Code/Rust-Code/Github/dojo-learn/dojo-starter/target/release/dojo_starter_world.contract_class.json";
@@ -131,6 +132,8 @@ pub(crate) async fn register_namespace() {
         Felt::from_hex("0x6265747379").unwrap(),
         Felt::from_hex("0x05").unwrap(),
     ];
+
+    let name_space_data = byte_array().await;
 
     let result = account
         .execute_v1(vec![Call {
