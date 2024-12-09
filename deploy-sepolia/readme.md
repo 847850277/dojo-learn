@@ -23,7 +23,7 @@ sozo migrate --profile release
 
 注册命名空间
 
-注册模型
+注册模型，调用注册模型方法，在model合约内部会自动部署该模型合约
 
 
 

@@ -15,5 +15,7 @@ async fn main() {
     //word_contract::register_event().await;
     //model_contract::deploy_position().await;
 
-    word_contract::register_model_position().await;
+    //word_contract::register_model_position().await;
+    //word_contract::register_namespace_b().await;
+    word_contract::register_model_position_b().await;
 }
