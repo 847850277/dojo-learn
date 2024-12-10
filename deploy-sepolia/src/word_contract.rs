@@ -149,11 +149,7 @@ pub(crate) async fn register_namespace() {
 
 }
 
-// 注册事件
-// 命名空间和 event_合约的class_hash
-pub(crate) async fn register_event() {
-    todo!()
-}
+
 
 
 // 注册model
@@ -388,6 +384,116 @@ pub(crate) async fn register_model_direction() {
         .execute_v1(vec![Call {
             to: word_contract_address,
             selector: get_selector_from_name("register_model").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
+
+
+// 注册事件
+// 命名空间和 event_合约的class_hash
+pub(crate) async fn register_event() {
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+    // b namespace
+    let name_space_data = byte_array_str("b").await;
+
+    // event class_hash
+    let class_hash = felt!("0x05be0a05a5df3bd3b4fc17f8b1feb395cb463ced20ea41d4fbb9b86a4d7efc66");
+
+    // name_space_data add class
+    let mut calldata = name_space_data;
+    calldata.push(class_hash);
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: get_selector_from_name("register_event").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
+
+// 注册合约
+// 初始化合约的salt
+// namespace 世界合约的命名空间
+// 想要注册合约的class_hash 0x07ca3f23baf5a81c10d7ffafc5a3925eddc099aed69f0165d853aee84da7b9f2
+pub(crate) async fn register_contract() {
+
+
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+    //
+    let salt = Felt::from_hex("0x1234").unwrap();
+    let mut calldata = vec![salt];
+
+
+    // b namespace
+    let mut name_space_data = byte_array_str("b").await;
+
+    // call append namespace_data
+    calldata.append(&mut name_space_data);
+
+    // contract class_hash
+    let class_hash = felt!("0x07ca3f23baf5a81c10d7ffafc5a3925eddc099aed69f0165d853aee84da7b9f2");
+
+    // name_space_data add class
+    calldata.push(class_hash);
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: get_selector_from_name("register_contract").unwrap(),
             calldata: calldata,
         }])
         .send()

@@ -2,6 +2,8 @@ pub mod startknet_contract;
 pub mod word_contract;
 mod byte_array;
 mod model_contract;
+mod event_contract;
+mod my_contract;
 
 use starknet::accounts::Account;
 use starknet::providers::Provider;
@@ -23,5 +25,9 @@ async fn main() {
     //word_contract::register_model_move().await;
     //0x70edf8f3be0b118e78f856f3ea9ebb652cba3684abaf7f299bfa6f93bf907c9
    // model_contract::decare_direction().await;
-    word_contract::register_model_direction().await;
+   // word_contract::register_model_direction().await;
+    //event_contract::decare_event().await;
+    //word_contract::register_event().await;
+    //my_contract::decare_my_contract().await;
+    word_contract::register_contract().await;
 }
