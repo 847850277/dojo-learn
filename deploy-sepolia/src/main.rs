@@ -4,6 +4,7 @@ mod byte_array;
 mod model_contract;
 mod event_contract;
 mod my_contract;
+mod call;
 
 use starknet::accounts::Account;
 use starknet::providers::Provider;
@@ -13,6 +14,12 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
+    //word_test();
+    contract_call_test();
+
+}
+
+fn word_test() {
     //word_contract::register_namespace().await;
     //word_contract::register_event().await;
     //model_contract::deploy_position().await;
@@ -24,10 +31,15 @@ async fn main() {
     //model_contract::decare_move().await;
     //word_contract::register_model_move().await;
     //0x70edf8f3be0b118e78f856f3ea9ebb652cba3684abaf7f299bfa6f93bf907c9
-   // model_contract::decare_direction().await;
-   // word_contract::register_model_direction().await;
+    // model_contract::decare_direction().await;
+    // word_contract::register_model_direction().await;
     //event_contract::decare_event().await;
     //word_contract::register_event().await;
     //my_contract::decare_my_contract().await;
-    word_contract::register_contract().await;
+    //word_contract::register_contract().await;
+}
+
+pub fn contract_call_test() {
+    println!("contract_call_test");
+
 }
