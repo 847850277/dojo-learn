@@ -39,3 +39,8 @@ cairo的ByteArray数据类型用法  https://github.com/cartridge-gg/cainome/blo
 
 
 在Rust中怎么获取链上的class_hash
+
+
+client的项目调整为sepolia的项目
+
+
