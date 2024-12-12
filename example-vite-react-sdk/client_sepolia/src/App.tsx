@@ -122,6 +122,13 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
     const moves = useModel(entityId, Models.Moves);
     const position = useModel(entityId, Models.Position);
 
+    // const account_array = [
+    //     {
+    //         address: "0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a",
+    //         signer:"0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf",
+    //     }
+    // ]
+
     return (
         <div className="bg-black min-h-screen w-full p-4 sm:p-8">
             <div className="max-w-7xl mx-auto">
@@ -154,6 +161,8 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
                                     {account.address}
                                 </option>
                             ))}
+
+
                         </select>
                     </div>
                     <button
