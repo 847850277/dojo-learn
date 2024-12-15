@@ -7,6 +7,12 @@
 ## 列表调整为固定的某个账户
 ```bash
 
+{account?.list().map((account, index) => (
+                                <option value={account.address} key={index}>
+                                    {account.address}
+                                </option>
+                            ))}
+
 {account_array.map((account, index) => (
                                 <option value={account.address} key={index}>
                                     {account.address}

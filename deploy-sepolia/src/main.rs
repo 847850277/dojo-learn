@@ -40,6 +40,7 @@ fn word_test() {
 }
 
 pub fn contract_call_test() {
-    println!("contract_call_test");
+    //println!("contract_call_test");
 
+    my_contract::call_spawn().await;
 }

@@ -47,3 +47,12 @@ pub(crate) async fn decare_my_contract() {
     let deploy_response = account.send().await;
     dbg!(deploy_response);
 }
+
+
+// 调用对应合约的方法
+pub(crate) async fn call_spawn() {
+
+
+
+    todo!()
+}

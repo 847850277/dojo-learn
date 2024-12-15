@@ -30,6 +30,13 @@ sozo migrate --profile release
 注册合约，调用注册合约方法，在注册合约合约内部会自动部署该合约合约，自己部署和调用注册合约部署到链上。参数为合约的class_hash,已经salt
 
 
+TODO
+
+- 执行合约的spawn方法
+  - 找到spawn需要的参数
+  - 构建参数
+  - 调用合约的spawn方法
+
 
 
 支线任务
