@@ -14,12 +14,12 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    //word_test();
-    contract_call_test();
+    word_test().await;
+    //contract_call_test().await;
 
 }
 
-fn word_test() {
+pub async fn word_test() {
     //word_contract::register_namespace().await;
     //word_contract::register_event().await;
     //model_contract::deploy_position().await;
@@ -37,9 +37,11 @@ fn word_test() {
     //word_contract::register_event().await;
     //my_contract::decare_my_contract().await;
     //word_contract::register_contract().await;
+
+    word_contract::init_contract().await;
 }
 
-pub fn contract_call_test() {
+pub async  fn contract_call_test() {
     //println!("contract_call_test");
 
     my_contract::call_spawn().await;

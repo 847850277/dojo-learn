@@ -37,6 +37,27 @@ TODO
   - 构建参数
   - 调用合约的spawn方法
 
+在页面调用该合约失败
+
+错误信息
+```json
+{
+  "error": {
+    "message": "Resource `0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf` is registered but not as `model`"
+  }
+}
+```
+
+pub fn resource_conflict(name: @ByteArray, expected_type: @ByteArray) -> ByteArray {
+format!("Resource `{}` is registered but not as {}", name, expected_type)
+}
+
+先在页面成功调用该合约，discord去问问呢？
+
+
+
+调用init_contract?，好像也会报错误呢。
+
 
 
 支线任务
