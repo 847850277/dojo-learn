@@ -72,25 +72,15 @@ export const createAccount = async ({
     nodeUrl: string;
     classHash: string;
 }) => {
-    const provider = new RpcProvider({ nodeUrl });
-    //const privateKey = stark.randomAddress();
-    const privateKey = stark.randomAddress();
-    //const publicKey = ec.starkCurve.getStarkKey(privateKey);
-    const publicKey = ec.starkCurve.getStarkKey(privateKey);
-    const address = hash.calculateContractAddressFromHash(
-        publicKey,
-        classHash,
-        CallData.compile({ publicKey }),
-        0
-    );
-    const account = new Account(provider, address, privateKey, "1");
-    // const { transaction_hash } = await account.deployAccount({
-    //     classHash,
-    //     constructorCalldata: CallData.compile({ publicKey }),
-    //     addressSalt: publicKey,
-    // });
-    // await account.waitForTransaction(transaction_hash);
-
+    const provider = new RpcProvider({ nodeUrl: "https://starknet-sepolia.public.blastapi.io/rpc/v0_7" }); // only for starknet-devnet-rs
+    console.log("provider",provider);
+    //连接已经存在的账户
+    const privateKey = "0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf";
+    const address = "0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a";
+    const account = new Account(provider, address, privateKey);
+    // account get pub key
+    //const pubKey = ec.keyFromPrivate(privateKey).getPublic();
+    const pubKey = "Sd82dMc87BBHiDQyHRjackMbvjRzzQKTnw8eKgicSNE";
 
 
     const localBurners: any = localStorage.getItem("burners") || "{}";
@@ -100,7 +90,7 @@ export const createAccount = async ({
     }
     burners[address] = {
         active: true,
-        publicKey,
+        pubKey,
         privateKey,
     };
     localStorage.setItem("burners", JSON.stringify(burners));
