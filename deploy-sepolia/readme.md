@@ -55,6 +55,8 @@ format!("Resource `{}` is registered but not as {}", name, expected_type)
 先在页面成功调用该合约，discord去问问呢？
 
 
+vue的example
+
 
 调用init_contract?，好像也会报错误呢。
 
