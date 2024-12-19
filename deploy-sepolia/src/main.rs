@@ -38,7 +38,8 @@ pub async fn word_test() {
     //my_contract::decare_my_contract().await;
     //word_contract::register_contract().await;
 
-    word_contract::init_contract().await;
+    //word_contract::init_contract().await;
+    word_contract::permissions().await;
 }
 
 pub async  fn contract_call_test() {

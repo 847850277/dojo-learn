@@ -564,3 +564,8 @@ pub(crate) async fn init_contract() {
 
     println!("Transaction hash: {:#064x}", result.transaction_hash);
 }
+
+// 为合约添加权限
+pub(crate) async fn permissions() {
+    todo!()
+}
