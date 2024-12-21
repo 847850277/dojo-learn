@@ -14,8 +14,8 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    word_test().await;
-    //contract_call_test().await;
+    //word_test().await;
+    contract_call_test().await;
 
 }
 
@@ -38,8 +38,8 @@ pub async fn word_test() {
     //my_contract::decare_my_contract().await;
     //word_contract::register_contract().await;
 
-    //word_contract::init_contract().await;
-    word_contract::permissions().await;
+    //word_contract::permissions().await;
+    word_contract::init_contract().await;
 }
 
 pub async  fn contract_call_test() {

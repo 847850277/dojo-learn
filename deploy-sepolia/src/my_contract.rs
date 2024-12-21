@@ -76,10 +76,12 @@ pub(crate) async fn call_spawn() {
         ExecutionEncoding::New,
     );
 
+    let selector = felt!("0x0217c73ea9ef26581623f20edd45571c1d024612b70d0af3e0842c5b0dc253cd");
 
     let transfer_response = account.execute_v1(vec![Call {
         to: contract_address,
         selector: selector!("spawn"),
+        //selector: selector,
         calldata: vec![],
     }])//.max_fee(FieldElement::from_dec_str("1000000000000000000").unwrap())
         .send()

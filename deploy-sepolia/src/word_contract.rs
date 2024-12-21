@@ -504,6 +504,76 @@ pub(crate) async fn register_contract() {
 }
 
 
+// 为合约添加权限
+// selector（为部署合约的dojo_name）
+// 合约地址(部署合约的地址)
+pub(crate) async fn permissions() {
+
+
+    let provider = JsonRpcClient::new(HttpTransport::new(
+        Url::parse("https://starknet-sepolia.public.blastapi.io/rpc/v0_7").unwrap(),
+    ));
+
+    let signer = LocalWallet::from(SigningKey::from_secret_scalar(
+        Felt::from_hex("0x025e5b9982a2c8e04cb477d7c71aec25e2043e4d52cb61604208e1939acfb8bf").unwrap(),
+    ));
+    let address = Felt::from_hex("0x0156c66218B0836d8d49096529BBA0E750Eb36377E5a98F99A70ee997296D36a").unwrap();
+    let word_contract_address =
+        Felt::from_hex("0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf").unwrap();
+
+    let mut account = SingleOwnerAccount::new(
+        provider,
+        signer,
+        address,
+        chain_id::SEPOLIA,
+        ExecutionEncoding::New,
+    );
+
+    // `SingleOwnerAccount` defaults to checking nonce and estimating fees against the latest
+    // block. Optionally change the target block to pending with the following line:
+    account.set_block_id(BlockId::Tag(BlockTag::Pending));
+
+    //
+    let mut calldata = vec![];
+
+    // selector 地址为 namespace + dojo_name 组合
+    // 当前可以在 dojo中增加该方法获取 // TODO 组装selector的方法
+    // pub fn dojo_selector(&self) -> DojoSelector {
+    //
+    //     let namespace = "b";
+    //     let name = "actions";
+    //     let felt = naming::compute_selector_from_names(namespace, name);
+    //     println!("genrate dojo_selector: {:?}", felt.to_hex_string());
+
+    //let selector = starknet::macros::selector!("actions");//get_selector_from_name("actions").unwrap();
+    let selector = felt!("0x21ddf9b35d7c6453431d68597d530aff206fc347b8cf10aad876fa42d1df3c7");
+    // contract address
+    let contract_address = felt!("0x009486b97b51beb5d31909b2e07bcadce5edf3d248f39b88f627fb5a78337eb5");
+    //calldata.insert(contract_address);
+    calldata.extend(vec![selector]);
+    //calldata.push(contract_address);
+    calldata.extend(vec![contract_address]);
+    //calldata.push(selector);
+
+    // print selector && contract address
+    println!("selector: {}", selector.to_hex_string());
+    println!("contract_address: {}", contract_address.to_hex_string());
+
+    let result = account
+        .execute_v1(vec![Call {
+            to: word_contract_address,
+            selector: starknet::macros::selector!("grant_writer"),//get_selector_from_name("grant_writer").unwrap(),
+            calldata: calldata,
+        }])
+        .send()
+        .await
+        .unwrap();
+
+    println!("Transaction hash: {:#064x}", result.transaction_hash);
+}
+
+
+
 // 初始化合约
 // 合约地址
 // 合约初始化参数
@@ -538,17 +608,14 @@ pub(crate) async fn init_contract() {
     let mut calldata = vec![];
 
 
-    // b namespace
-    //let mut name_space_data = byte_array_str("b").await;
-
-    // call append namespace_data
-    let contract_address = felt!("0x07ca3f23baf5a81c10d7ffafc5a3925eddc099aed69f0165d853aee84da7b9f2");
+    //selector
+    let selector = felt!("0x21ddf9b35d7c6453431d68597d530aff206fc347b8cf10aad876fa42d1df3c7");
     //calldata.insert(contract_address);
-    calldata.push(contract_address);
+    calldata.push(selector);
 
     // felt empty array
     let empty = felt!("0x00");
-
+    //
     calldata.push(empty);
 
 
@@ -563,9 +630,4 @@ pub(crate) async fn init_contract() {
         .unwrap();
 
     println!("Transaction hash: {:#064x}", result.transaction_hash);
-}
-
-// 为合约添加权限
-pub(crate) async fn permissions() {
-    todo!()
 }
