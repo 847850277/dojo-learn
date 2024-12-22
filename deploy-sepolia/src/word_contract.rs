@@ -505,7 +505,7 @@ pub(crate) async fn register_contract() {
 
 
 // 为合约添加权限
-// selector（为部署合约的dojo_name）
+// selector（为 namespace + 部署合约的dojo_name）
 // 合约地址(部署合约的地址)
 pub(crate) async fn permissions() {
 

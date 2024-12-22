@@ -5,8 +5,10 @@ mod model_contract;
 mod event_contract;
 mod my_contract;
 mod call;
+mod util;
 
 use starknet::accounts::Account;
+use starknet::macros::selector;
 use starknet::providers::Provider;
 
 const MAX_BYTECODE_SIZE_1: usize = 180000;
@@ -14,8 +16,8 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    //word_test().await;
-    contract_call_test().await;
+    word_test().await;
+    //contract_call_test().await;
 
 }
 
