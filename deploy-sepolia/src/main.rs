@@ -8,6 +8,8 @@ mod call;
 mod util;
 
 use starknet::accounts::Account;
+use starknet::core::types::Felt;
+use starknet::core::utils::{cairo_short_string_to_felt, get_selector_from_name};
 use starknet::macros::selector;
 use starknet::providers::Provider;
 
@@ -16,8 +18,19 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    word_test().await;
-    //contract_call_test().await;
+    util_test().await;
+
+
+}
+
+pub async fn util_test(){
+    let str = "execute";
+    // 0x65786563757465
+    let felt = util::get_felt_from_str(str).await;
+    println!("felt: {:?}", felt.to_hex_string());
+    let str = util::get_str_from_felt(felt).await;
+    println!("str: {:?}", str);
+
 
 }
 
