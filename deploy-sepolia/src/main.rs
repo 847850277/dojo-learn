@@ -17,8 +17,7 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 async fn main() {
 
     //util_test().await;
-    account_2::test().await;
-
+    //account_2::test().await;
 }
 
 pub async fn util_test(){
@@ -51,8 +50,8 @@ pub async fn word_test() {
     //my_contract::decare_my_contract().await;
     //word_contract::register_contract().await;
 
-    //word_contract::permissions().await;
-    word_contract::init_contract().await;
+    word_contract::permissions().await;
+    //word_contract::init_contract().await;
 }
 
 pub async  fn contract_call_test() {
