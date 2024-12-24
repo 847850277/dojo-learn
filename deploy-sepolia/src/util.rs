@@ -1,5 +1,7 @@
 use starknet::core::types::Felt;
 use starknet::core::utils::{cairo_short_string_to_felt, parse_cairo_short_string};
+use cainome::cairo_serde::{ByteArray, CairoSerde};
+use starknet_crypto::poseidon_hash_many;
 
 pub async fn get_str_from_felt(felt: Felt) -> String {
     // to Str
@@ -20,3 +22,10 @@ pub async fn get_felt_from_str(str: &str) -> Felt {
     cairo_short_string_to_felt(str).unwrap()
 
 }
+
+
+pub fn compute_bytearray_hash(value: &str) -> Felt {
+    let ba = ByteArray::from_string(value).unwrap_or_else(|_| panic!("Invalid ByteArray: {value}"));
+    poseidon_hash_many(&ByteArray::cairo_serialize(&ba))
+}
+

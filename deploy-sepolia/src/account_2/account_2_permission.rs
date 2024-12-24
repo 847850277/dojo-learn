@@ -35,8 +35,7 @@ pub(crate) async fn permissions() {
     //
     let mut calldata = vec![];
 
-    // selector 地址为 namespace
-    //let selector = starknet::macros::selector!("actions");//get_selector_from_name("actions").unwrap();
+    // selector 地址为 namespace `dojo_starter`
     let selector = felt!("0x6234d36dccb55b4b11d8862762d17515213173cbdf5427818157e8c5f45f6a2");
     // contract address
     let contract_address = felt!("0x023edf322be9eb54e407080d6eda97a2a5d3262a823bc9ae94fbac22a3464d9a");

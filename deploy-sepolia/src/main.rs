@@ -16,7 +16,7 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    //util_test().await;
+    util_test().await;
     //account_2::test().await;
 }
 
@@ -27,6 +27,9 @@ pub async fn util_test(){
     println!("felt: {:?}", felt.to_hex_string());
     let str = util::get_str_from_felt(felt).await;
     println!("str: {:?}", str);
+
+    println!("dojo_starter");
+    println!("{}", util::compute_bytearray_hash("dojo_starter").to_hex_string())
 
 
 }

@@ -107,6 +107,10 @@ IPFS credentials not found. Metadata upload skipped. To upload metadata, configu
 
 ```
 
+onchain_交互的demo
+
+![画板](sozo/sozo_migrate_onchain.png)
+
 
 ## permission时序图
 
