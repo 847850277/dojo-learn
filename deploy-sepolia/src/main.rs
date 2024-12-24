@@ -16,8 +16,8 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 #[tokio::main]
 async fn main() {
 
-    util_test().await;
-    //account_2::test().await;
+    //util_test().await;
+    account_2::test().await;
 }
 
 pub async fn util_test(){

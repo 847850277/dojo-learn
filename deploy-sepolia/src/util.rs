@@ -29,3 +29,11 @@ pub fn compute_bytearray_hash(value: &str) -> Felt {
     poseidon_hash_many(&ByteArray::cairo_serialize(&ba))
 }
 
+pub fn compute_selector_from_hashes(namespace_hash: Felt, model_hash: Felt) -> Felt {
+    poseidon_hash_many(&[namespace_hash, model_hash])
+}
+
+pub fn compute_selector_from_names(namespace: &str, name: &str) -> Felt {
+    compute_selector_from_hashes(compute_bytearray_hash(namespace), compute_bytearray_hash(name))
+}
+
