@@ -13,6 +13,8 @@ use starknet::core::utils::get_selector_from_name;
 use url::Url;
 use crate::byte_array::{byte_array, byte_array_str};
 
+
+// 当前账户1的demo交互有错误，完整的交互demo可以看账户2
 pub async fn decare() {
     let path = "/Users/zhengpeng/Source/Code/Rust-Code/Github/dojo-learn/dojo-starter/target/release/dojo_starter_world.contract_class.json";
 
@@ -505,7 +507,7 @@ pub(crate) async fn register_contract() {
 
 
 // 为合约添加权限
-// selector（为 namespace + 部署合约的dojo_name）
+// selector（为 namespace的 naming.rs:compute_bytearray_hash）
 // 合约地址(部署合约的地址)
 pub(crate) async fn permissions() {
 
@@ -536,17 +538,16 @@ pub(crate) async fn permissions() {
     //
     let mut calldata = vec![];
 
-    // selector 地址为 namespace + dojo_name 组合
+    // selector 地址为 namespace
     // 当前可以在 dojo中增加该方法获取 // TODO 组装selector的方法
     // pub fn dojo_selector(&self) -> DojoSelector {
     //
     //     let namespace = "b";
-    //     let name = "actions";
-    //     let felt = naming::compute_selector_from_names(namespace, name);
+    //     let felt = naming::compute_selector_from_names(namespace);
     //     println!("genrate dojo_selector: {:?}", felt.to_hex_string());
 
     //let selector = starknet::macros::selector!("actions");//get_selector_from_name("actions").unwrap();
-    let selector = felt!("0x21ddf9b35d7c6453431d68597d530aff206fc347b8cf10aad876fa42d1df3c7");
+    let selector = felt!("0x2203496fc372a4f862bb39a1edc2895f354d6169058d8ed4cf172cea4ec2e2");
     // contract address
     let contract_address = felt!("0x009486b97b51beb5d31909b2e07bcadce5edf3d248f39b88f627fb5a78337eb5");
     //calldata.insert(contract_address);

@@ -1,4 +1,6 @@
 pub mod account_2_register;
+pub mod account_2_permission;
+mod account_2_contract_call;
 
 pub(crate) async fn test() {
     //account_2::account_2_register::decare().await;
@@ -13,5 +15,6 @@ pub(crate) async fn test() {
     //account_2_register::register_event_decare_move().await;
     //account_2_register::register_event_move().await;
     //account_2_register::register_contract_decare_actions().await;
-    account_2_register::register_contract_actions().await;
+    //account_2_register::register_contract_actions().await;
+    account_2_permission::permissions().await;
 }
