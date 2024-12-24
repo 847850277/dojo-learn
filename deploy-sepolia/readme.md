@@ -13,6 +13,8 @@ sozo migrate --profile release
 
 当前链接合约有完整的交互demo https://sepolia.voyager.online/contract/0x06f08a7168b67d269b393a2f4eff772481ec260702397088d414f318621bbe8c
 
+我当前用的世界合约报错的，可以不看 https://sepolia.voyager.online/contract/0x033558685a3ca425fe6ec072efe425d172533927f6dacaa6865f93a383d9ffdf
+
 我账户2当前用的世界合约 https://sepolia.voyager.online/contract/0x024b4ad4381306818a1d4cf65320f049415fa2ed328b11fa4d4552b3f6421b52
 
 参数为 1234，不正确的部署的世界合约地址 `0x03f8eb232e97efff1ba1e6f74d5946e6c6749b199486336fec4fd77734dcac58`
