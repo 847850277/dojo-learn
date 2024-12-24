@@ -1,3 +1,6 @@
+use starknet::accounts::Account;
+use starknet::providers::Provider;
+
 pub mod startknet_contract;
 pub mod word_contract;
 mod byte_array;
@@ -6,20 +9,15 @@ mod event_contract;
 mod my_contract;
 mod call;
 mod util;
-
-use starknet::accounts::Account;
-use starknet::core::types::Felt;
-use starknet::core::utils::{cairo_short_string_to_felt, get_selector_from_name};
-use starknet::macros::selector;
-use starknet::providers::Provider;
+mod account_2;
 
 const MAX_BYTECODE_SIZE_1: usize = 180000;
 
 #[tokio::main]
 async fn main() {
 
-    util_test().await;
-
+    //util_test().await;
+    account_2::test().await;
 
 }
 
