@@ -106,3 +106,8 @@ IPFS credentials not found. Metadata upload skipped. To upload metadata, configu
 
 
 ```
+
+
+## permission时序图
+
+![画板](sozo/permission.png)

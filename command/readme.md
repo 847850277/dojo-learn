@@ -16,3 +16,8 @@ Migrating a world can be sequenced as follows:
     - For newly registered resources, the permissions are applied.
     - For existing resources, the permissions are compared to the onchain state and the necessary changes are applied.
 4. All contracts that are not initialized are initialized, since permissions are applied, initialization of contracts can mutate resources.
+
+
+
+
+
