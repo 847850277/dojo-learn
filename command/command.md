@@ -24,3 +24,13 @@ sozo execute 0x023edf322be9eb54e407080d6eda97a2a5d3262a823bc9ae94fbac22a3464d9a 
 ```bash
 sozo execute 0x023edf322be9eb54e407080d6eda97a2a5d3262a823bc9ae94fbac22a3464d9a move -c 1 --rpc-url  https://starknet-sepolia.public.blastapi.io/rpc/v0_7 --account-address 0x04097f4882C50bDdBaFe1A79337bDaBDf001456430aDede37F36E47E22d135De  --private-key 0x028a46eddc7615d00e21d31dc959d2721c3cc5b267e381b7fd4c7931f3e61dfe  -vvv
 ```
+
+
+## 通过sozo migrate部署到测试网
+
+
+- 
+- 1、rpc的地址改为测试网
+- 2、账号地址和私钥改为测试网的账号地址和私钥
+- 3、如果提示世界合约已经存在了,更改`dojo_sepolia.toml`下的seed。
+
