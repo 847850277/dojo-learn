@@ -1,8 +1,8 @@
 {
   "world": {
     "class_hash": "0x79d9ce84b97bcc2a631996c3100d57966fc2f5b061fb1ec4dfd0040976bcac6",
-    "address": "0x4b9345319cdbb84e196f1da5ae89dd0385c6c369cbe39910191c2ccdb07ce89",
-    "seed": "dojo_starter_checkers",
+    "address": "0x1952e5464051ee5a7b0ea9ea286a882f63e6df9ead419105ee97f8cac43590b",
+    "seed": "dojo_starter_25",
     "name": "Dojo starter",
     "entrypoints": [
       "uuid",
@@ -1243,8 +1243,8 @@
   },
   "contracts": [
     {
-      "address": "0x3001dc519d85a62b71355e3a8dfa30c0fe526a3687fbfa8499ea604ba7d9aec",
-      "class_hash": "0x59b5ec0cf3f7761b1c5dad4fffd78576375e3db5ec91c49b96febbf2540f7c0",
+      "address": "0x5e9229e51ea20270b108c2802b609f03b4cc8d2985318e4e5572e18f52b4e45",
+      "class_hash": "0x3dca3ffec8b2c3d988518dab272056a5cdab0636d695770ce864e477d8647d0",
       "abi": [
         {
           "type": "impl",
@@ -1451,6 +1451,17 @@
             {
               "type": "function",
               "name": "get_session_id",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u64"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "get_session_id_1",
               "inputs": [],
               "outputs": [
                 {

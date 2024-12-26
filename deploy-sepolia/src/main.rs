@@ -10,6 +10,7 @@ mod my_contract;
 mod call;
 mod util;
 mod account_2;
+mod checkers;
 
 const MAX_BYTECODE_SIZE_1: usize = 180000;
 
@@ -17,7 +18,10 @@ const MAX_BYTECODE_SIZE_1: usize = 180000;
 async fn main() {
 
     //util_test().await;
-    account_2::test().await;
+    //account_2::test().await;
+    checkers::test().await;
+
+
 }
 
 pub async fn util_test(){

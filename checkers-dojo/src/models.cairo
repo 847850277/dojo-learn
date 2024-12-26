@@ -1,6 +1,5 @@
 use starknet::ContractAddress;
 
-
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
 pub struct Piece {
@@ -36,7 +35,6 @@ pub struct Player {
     pub remaining_pieces: u8,
 }
 
-
 // Future model to handle lobbies dynamically
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
@@ -45,7 +43,6 @@ pub struct Counter {
     pub global_key: felt252,
     value: u64
 }
-
 
 #[generate_trait]
 impl CounterImpl of CounterTrait {
@@ -65,7 +62,6 @@ impl CounterImpl of CounterTrait {
         self.value = 0;
     }
 }
-
 
 #[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
 pub enum Position {
@@ -103,3 +99,18 @@ impl PositionImpl of PositionTrait {
         self.row == b.row && self.col == b.col
     }
 }
+// #[cfg(test)]
+// mod tests {
+//     use super::{Vec2, Vec2Trait};
+
+//     #[test]
+//     fn test_vec_is_zero() {
+//         assert(Vec2Trait::is_zero(Vec2 { x: 0, y: 0 }), 'not zero');
+//     }
+
+//     #[test]
+//     fn test_vec_is_equal() {
+//         let coordinates = Vec2 { x: 420, y: 0 };
+//         assert(coordinates.is_equal(Vec2 { x: 420, y: 0 }), 'not equal');
+//     }
+// }

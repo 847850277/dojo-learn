@@ -15,8 +15,9 @@ trait IActions<T> {
 
     //getter function
     fn get_session_id(self: @T) -> u64;
-}
 
+    fn get_session_id_1(self: @T) -> u64;
+}
 
 // dojo decorator
 #[dojo::contract]
@@ -217,6 +218,14 @@ pub mod actions {
 
             session_counter.get_value() - 1
         }
+
+        //Getter function
+        fn get_session_id_1(self: @ContractState) -> u64 {
+            let world = self.world_default();
+            let session_counter: Counter = world.read_model(('id',));
+
+            session_counter.get_value() - 1
+        }
     }
 
     #[generate_trait]
@@ -225,7 +234,7 @@ pub mod actions {
         // We could have a self.world with an other function to init from hash, that can be
         // constant.
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
-            self.world(@"checkers_marq")
+            self.world(@"dojo_starter")
         }
 
         fn spawn(
