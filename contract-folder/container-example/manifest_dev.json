@@ -1,8 +1,8 @@
 {
   "world": {
     "class_hash": "0x79d9ce84b97bcc2a631996c3100d57966fc2f5b061fb1ec4dfd0040976bcac6",
-    "address": "0x2241a6197bf6e24d42fb0fd5afe46ff1e405afa6228847afcab9f644ecb451d",
-    "seed": "dojo_starter_container_2",
+    "address": "0x3b1084ad1f49063783333e00296de0d3b020e0d0ad76b73d6a8f1a9ab366a6c",
+    "seed": "dojo_starter_container_10",
     "name": "Dojo starter",
     "entrypoints": [
       "uuid",
@@ -1243,8 +1243,8 @@
   },
   "contracts": [
     {
-      "address": "0x5f66afd349b27f1d7e6f4602d6052620afc89b5504008b4e9b196bb081c00cb",
-      "class_hash": "0x63ce1d27ccf120c850ad9f17a4e0cac6853f96a6f27fee1c2c2de48a62bbdf4",
+      "address": "0x6b8d6653758fd620c951b52d0df1e72194581d8cb6feb44745e74da7830703f",
+      "class_hash": "0x26528c078aaa8af359e6ed9721ced1b7213bd8a2cd76a8cb1a27ad4b4f38bc9",
       "abi": [
         {
           "type": "impl",
@@ -1463,5 +1463,12 @@
       "selector": "0x190e5bbd442fd67623dd73646446e3393a3d17f5838cd7d0567795123f682e1"
     }
   ],
-  "events": []
+  "events": [
+    {
+      "members": [],
+      "class_hash": "0x62c60e49a1fba1b551dfbec3640eb29b98bd7995cafc236191c3cd92c3653b",
+      "tag": "dojo_starter-TestEventTwo",
+      "selector": "0x327d2d71929f52f5803997e126626d0aefddf39889e97ac62291686263fc179"
+    }
+  ]
 }

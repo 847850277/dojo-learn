@@ -1,4 +1,5 @@
 use dojo_starter::models::{Container};
+use starknet::{ContractAddress};
 
 // define the interface
 #[starknet::interface]
@@ -10,12 +11,20 @@ trait IActions<T> {
 // dojo decorator
 #[dojo::contract]
 pub mod actions {
-    use super::{IActions};
+    use super::{IActions,same_address};
     use starknet::{ContractAddress, get_caller_address};
     use dojo_starter::models::{Container};
 
     use dojo::model::{ModelStorage, ModelValueStorage};
     use dojo::event::EventStorage;
+
+     #[derive(Copy, Drop, Serde)]
+     #[dojo::event]
+     pub struct TestEventTwo {
+         #[key]
+         pub player: ContractAddress,
+         pub same: bool,
+     }
 
 
     #[abi(embed_v0)]
@@ -43,12 +52,13 @@ pub mod actions {
             // Get the default world.
             let mut world = self.world_default();
             // Get the address of the current caller, possibly the player's address.
-            //let player = get_caller_address();
+            let player = get_caller_address();
             let mut container: Container = world.read_model(game_id);
             assert(container.creator.is_non_zero(), 'is zero address');
+            let same_players = same_address(player, container.creator);
+            assert(!same_players, 'same player');
+            world.emit_event(@TestEventTwo { player, same: same_players});
             world.write_model(@container);
-
-
         }
     }
 
@@ -62,3 +72,9 @@ pub mod actions {
     }
 }
 
+fn same_address(p1: ContractAddress,p2: ContractAddress) -> bool {
+    if(p1 == p2){
+        return true;
+    }
+    false
+}
